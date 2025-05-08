@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 23, 42;
+  --background-end-rgb: 3, 7, 18;
+  --primary-color: 56, 189, 248; /* Sky blue */
+  --secondary-color: 168, 85, 247; /* Purple */
+  --accent-color: 34, 211, 238; /* Cyan */
+  --success-color: 34, 197, 94; /* Green */
+  --warning-color: 234, 179, 8; /* Yellow */
+  --error-color: 239, 68, 68; /* Red */
+  --neutral-color: 71, 85, 105; /* Slate */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 3, 7, 18;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold md:text-5xl text-white;
+  }
+  
+  h2 {
+    @apply text-2xl font-semibold md:text-3xl text-white;
+  }
+  
+  h3 {
+    @apply text-xl font-semibold md:text-2xl text-white;
+  }
+  
+  a {
+    @apply text-sky-400 hover:text-sky-300 transition-colors duration-200;
+  }
+}
+
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-sky-500 to-sky-600 text-white hover:from-sky-600 hover:to-sky-700 shadow-md hover:shadow-lg focus-visible:ring-sky-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 shadow-md hover:shadow-lg focus-visible:ring-purple-500;
+  }
+  
+  .btn-outline {
+    @apply btn border border-slate-700 hover:bg-slate-800 text-white;
+  }
+  
+  .btn-ghost {
+    @apply btn hover:bg-slate-800/50 text-white;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply transform hover:-translate-y-1 transition-transform duration-300;
+  }
+  
+  /* Text styles */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-500;
+  }
+  
+  .text-gradient-alt {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-sky-500;
+  }
+  
+  /* Effects */
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-glow:hover {
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+  }
+  
+  /* Layouts */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section {
+    @apply py-12 md:py-16;
+  }
+  
+  /* Form elements */
+  .input {
+    @apply bg-slate-900 border border-slate-700 rounded-md px-4 py-2 text-white
+    focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent
+    placeholder:text-slate-500;
+  }
+  
+  .select {
+    @apply bg-slate-900 border border-slate-700 rounded-md px-4 py-2 text-white
+    focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent;
+  }
+  
+  .checkbox {
+    @apply h-5 w-5 rounded border-slate-600 text-sky-500 
+    focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-0;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.1), rgba(255,255,255,0));
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Glass morphism */
+.glass {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
+}
+
+/* Hide scrollbar but allow scrolling */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.my-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Test style to check if CSS is loading */
+body::after {
+  content: "CSS is loading correctly";
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: yellow;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 9999;
+} 
