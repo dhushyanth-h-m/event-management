@@ -35,7 +35,7 @@ This application follows a microservices architecture with the following main co
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/event-management.git
+git clone https://github.com/dhushyanth-h-m/event-management
 cd event-management
 ```
 
