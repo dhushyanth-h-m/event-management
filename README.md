@@ -2,9 +2,9 @@
 
 A real-time event management platform built with Next.js, React, MongoDB, WebSockets, and more.
 
-## 🚀 Live Demo
+## 🚀 Live Demo 
 
-**Production URL**: https://event-management-chi-blush.vercel.app/
+**Production URL **: https://event-management-chi-blush.vercel.app/
 
 ## ✨ Features
 
