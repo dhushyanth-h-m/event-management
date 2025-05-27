@@ -6,11 +6,11 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 15, 23, 42;
   --background-end-rgb: 3, 7, 18;
-  --primary-color: 56, 189, 248; /* Sky blue */
-  --secondary-color: 168, 85, 247; /* Purple */
-  --accent-color: 34, 211, 238; /* Cyan */
-  --success-color: 34, 197, 94; /* Green */
-  --warning-color: 234, 179, 8; /* Yellow */
+  --primary-color: 100, 116, 139; /* Neutral slate */
+  --secondary-color: 107, 114, 128; /* Neutral gray */
+  --accent-color: 148, 163, 184; /* Light slate */
+  --success-color: 16, 185, 129; /* Muted green */
+  --warning-color: 245, 158, 11; /* Muted orange */
   --error-color: 239, 68, 68; /* Red */
   --neutral-color: 71, 85, 105; /* Slate */
 }
@@ -59,11 +59,11 @@ body {
   }
   
   .btn-primary {
-    @apply btn bg-gradient-to-r from-sky-500 to-sky-600 text-white hover:from-sky-600 hover:to-sky-700 shadow-md hover:shadow-lg focus-visible:ring-sky-500;
+    @apply btn bg-gradient-to-r from-slate-600 to-slate-700 text-white hover:from-slate-700 hover:to-slate-800 shadow-md hover:shadow-lg focus-visible:ring-slate-500;
   }
   
   .btn-secondary {
-    @apply btn bg-gradient-to-r from-purple-500 to-purple-600 text-white hover:from-purple-600 hover:to-purple-700 shadow-md hover:shadow-lg focus-visible:ring-purple-500;
+    @apply btn bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 shadow-md hover:shadow-lg focus-visible:ring-gray-500;
   }
   
   .btn-outline {
@@ -85,11 +85,11 @@ body {
   
   /* Text styles */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-purple-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-400 to-gray-400;
   }
   
   .text-gradient-alt {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-sky-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-300 to-slate-500;
   }
   
   /* Effects */
@@ -98,7 +98,7 @@ body {
   }
   
   .hover-glow:hover {
-    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+    filter: drop-shadow(0 0 8px rgba(100, 116, 139, 0.5));
   }
   
   /* Layouts */
@@ -113,18 +113,18 @@ body {
   /* Form elements */
   .input {
     @apply bg-slate-900 border border-slate-700 rounded-md px-4 py-2 text-white
-    focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent
+    focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent
     placeholder:text-slate-500;
   }
   
   .select {
     @apply bg-slate-900 border border-slate-700 rounded-md px-4 py-2 text-white
-    focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent;
+    focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent;
   }
   
   .checkbox {
-    @apply h-5 w-5 rounded border-slate-600 text-sky-500 
-    focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-0;
+    @apply h-5 w-5 rounded border-slate-600 text-slate-500 
+    focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-0;
   }
 }
 
@@ -171,24 +171,3 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
-
-.my-button {
-  background-color: blue;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-/* Test style to check if CSS is loading */
-body::after {
-  content: "CSS is loading correctly";
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  background: yellow;
-  color: black;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  z-index: 9999;
-} 
