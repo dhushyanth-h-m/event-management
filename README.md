@@ -1,153 +1,85 @@
-# Real-Time Event Management Platform
+# Event Management Platform
 
-A modern, scalable event management system built with Next.js, React, TypeScript, WebSockets, Node.js, MongoDB, Docker, and Kubernetes.
+A real-time event management platform built with Next.js, React, MongoDB, WebSockets, and more.
 
-## Architecture
+## 🚀 Live Demo
 
-This application follows a microservices architecture with the following main components:
+**Production URL**: https://event-management-chi-blush.vercel.app/
 
-- **Frontend**: Next.js 14 with React 18, featuring SSR (Server-Side Rendering) and real-time UI updates via WebSockets
-- **Backend**: Node.js API with hybrid REST/WebSocket capabilities
-- **Database**: MongoDB with change streams for real-time data reactivity
-- **Message Broker**: Redis Pub/Sub for cross-service communication
-- **Containerization**: Docker and Kubernetes for deployment and scaling
+## ✨ Features
 
-## Key Features
+- **Real-time Updates**: WebSocket integration for live event updates
+- **MongoDB Integration**: Persistent data storage with MongoDB Atlas
+- **User Authentication**: Secure JWT-based authentication
+- **Event Management**: Create, edit, and manage events
+- **Admin Dashboard**: Administrative controls and analytics
+- **Responsive Design**: Modern, mobile-friendly interface
+- **CI/CD Pipeline**: Automated testing and deployment
 
-- Real-time dashboard with live metrics
-- WebSocket integration for instant updates
-- Event-driven architecture
-- Event management with CRUD operations
-- Authentication and authorization
-- Responsive UI built with TailwindCSS
-- Horizontal scaling with Kubernetes
+## 🛠 Tech Stack
 
-## Requirements
+- **Frontend**: Next.js 14, React, TypeScript, TailwindCSS
+- **Backend**: Next.js API Routes, Node.js
+- **Database**: MongoDB Atlas
+- **Real-time**: Socket.io WebSockets
+- **Authentication**: JWT, bcryptjs
+- **Deployment**: Vercel
+- **CI/CD**: GitHub Actions, ESLint
 
-- Node.js 18 or higher
-- Docker and Docker Compose (for local development)
-- MongoDB
-- Redis (for Pub/Sub functionality)
+## 📦 Installation
 
-## Getting Started
-
-### Local Development
-
-1. Clone the repository:
 ```bash
-git clone https://github.com/dhushyanth-h-m/event-management
+# Clone the repository
+git clone https://github.com/dhushyanth-h-m/event-management.git
+
+# Navigate to project directory
 cd event-management
-```
 
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-```
 
-3. Set up environment variables by creating a `.env.local` file:
-```env
-MONGODB_URI=mongodb://localhost:27017/event-management
-JWT_SECRET=your-super-secure-jwt-secret-key-please-change-this
-NODE_ENV=development
-```
+# Set up environment variables
+cp .env.example .env.local
+# Add your MongoDB URI and JWT secret
 
-**Important**: For production deployments, make sure to:
-- Use a strong, unique JWT secret (minimum 32 characters)
-- Use a secure MongoDB connection string with authentication
-- Never commit secrets to the repository
-
-4. Start the development server:
-```bash
+# Run development server
 npm run dev
 ```
 
-5. Visit http://localhost:3000 in your browser.
+## 🔧 Environment Variables
 
-### Using Docker Compose
-
-For a full development environment including MongoDB and Redis:
+Create a `.env.local` file with:
 
 ```bash
-docker-compose up -d
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+NODE_ENV=development
 ```
 
-## Deployment Options
+## 🚀 Deployment
 
-This project supports multiple deployment strategies through automated CI/CD pipelines:
+This project uses automated deployment via GitHub Actions to Vercel:
 
-### Option 1: Full AWS EKS Deployment (Production)
+- **Automatic deployment** on every push to main branch
+- **Build verification** with ESLint and TypeScript checks
+- **Production optimized** builds
 
-**Workflow**: `.github/workflows/ci-cd.yaml`
+## 📚 Learning Resources
 
-This is the full production deployment pipeline that:
-1. Builds and tests the application
-2. Creates a Docker image and pushes to GitHub Container Registry
-3. Deploys to AWS EKS cluster
+Check out the documentation files for setup guides:
+- `MONGODB_SETUP.md` - MongoDB Atlas configuration
+- `DEPLOYMENT.md` - Deployment options and guides
+- `ENVIRONMENT_SETUP.md` - Environment variables setup
 
-**Prerequisites**:
-- AWS account with EKS cluster set up
-- GitHub repository secrets configured
+## 🤝 Contributing
 
-**Required GitHub Secrets**:
-| Secret Name | Description | Example |
-|-------------|-------------|---------|
-| `AWS_ACCESS_KEY_ID` | AWS IAM access key | `AKIA1234567890EXAMPLE` |
-| `AWS_SECRET_ACCESS_KEY` | AWS IAM secret key | `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLE` |
-| `AWS_REGION` | AWS region for EKS cluster | `us-west-2` |
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally
+5. Submit a pull request
 
-**Setup Instructions**: See [AWS Setup Guide](./docs/AWS_SETUP.md) for detailed instructions.
-
-### Option 2: Simple CI/CD (Development/Testing)
-
-**Workflow**: `.github/workflows/ci-cd-simple.yaml`
-
-This simplified pipeline:
-1. Builds and tests the application
-2. Creates a Docker image and pushes to GitHub Container Registry
-3. Creates deployment artifacts for manual deployment
-
-**No AWS secrets required** - perfect for:
-- Testing the CI/CD pipeline
-- Development environments
-- Manual deployments to any platform
-
-**Deployment Options from Artifacts**:
-- Local Docker deployment
-- Docker Compose deployment
-- Manual Kubernetes deployment
-
-### Configuring GitHub Secrets
-
-To set up GitHub repository secrets:
-
-1. Go to your GitHub repository
-2. Navigate to **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret**
-4. Add the required secrets based on your deployment option
-
-### Manual Deployment
-
-You can also deploy manually using the built Docker images:
-
-```bash
-# Pull the latest image
-docker pull ghcr.io/dhushyanth-h-m/event-management:latest
-
-# Run with environment variables
-docker run -p 3000:3000 \
-  -e MONGODB_URI="your-mongodb-uri" \
-  -e JWT_SECRET="your-jwt-secret" \
-  ghcr.io/dhushyanth-h-m/event-management:latest
-```
-
-## CI/CD Pipeline Status
-
-The current CI/CD pipeline automatically:
-
-✅ **Tests and builds** the Next.js application  
-✅ **Creates Docker images** and pushes to GitHub Container Registry  
-✅ **Provides deployment artifacts** for flexible deployment options  
-⚠️ **AWS deployment** requires AWS credentials configuration  
+---
 
 ## Architecture Details
 
@@ -181,39 +113,12 @@ The application can be horizontally scaled using Kubernetes, with autoscaling ba
 │   ├── models/              # MongoDB models
 │   └── utils/               # Utility functions
 ├── kubernetes/              # Kubernetes manifests
-├── docs/                    # Documentation
 ├── public/                  # Static assets
 ├── .github/                 # GitHub Actions workflows
 ├── Dockerfile               # Docker configuration
 ├── docker-compose.yml       # Docker Compose configuration
 └── next.config.js           # Next.js configuration
 ```
-
-## Troubleshooting
-
-### Common CI/CD Issues
-
-1. **"Input required and not supplied: aws-region"**
-   - Add AWS secrets to GitHub repository settings
-   - Or use the simple CI/CD workflow instead
-
-2. **Docker build fails**
-   - Check if all dependencies are in `package.json`
-   - Ensure `public/` directory exists
-
-3. **TypeScript errors during build**
-   - Run `npm run build` locally to debug
-   - Check type definitions in `lib/utils/auth.ts`
-
-### Development Issues
-
-1. **WebSocket connection fails**
-   - Ensure the API route `/api/ws` is accessible
-   - Check browser developer tools for connection errors
-
-2. **MongoDB connection issues**
-   - Verify `MONGODB_URI` environment variable
-   - Ensure MongoDB is running locally
 
 ## Monitoring and Observability
 
@@ -231,16 +136,6 @@ Integration with Prometheus and Grafana is available for advanced monitoring cap
 - Rate limiting for API endpoints
 - Secure WebSocket handshake mechanism
 - Environment-based configuration for secrets
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test locally with `npm run build`
-5. Submit a pull request
-
-The CI/CD pipeline will automatically test your changes.
 
 ## License
 
