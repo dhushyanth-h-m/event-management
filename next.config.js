@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'standalone',
+
+  
   // Enable for WebSocket API routes
   async rewrites() {
     return [
@@ -11,6 +12,11 @@ const nextConfig = {
         destination: '/api/ws',
       },
     ];
+  },
+  
+  // Add image optimization for better performance
+  images: {
+    domains: ['localhost'],
   },
 }
 
