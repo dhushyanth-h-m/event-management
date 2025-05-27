@@ -8,6 +8,7 @@ A real-time event management platform built with Next.js, React, MongoDB, WebSoc
 
 ## ✨ Features
 
+
 - **Real-time Updates**: WebSocket integration for live event updates
 - **MongoDB Integration**: Persistent data storage with MongoDB Atlas
 - **User Authentication**: Secure JWT-based authentication
