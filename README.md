@@ -45,10 +45,16 @@ npm install
 ```
 
 3. Set up environment variables by creating a `.env.local` file:
-```
+```env
 MONGODB_URI=mongodb://localhost:27017/event-management
-JWT_SECRET=your-secret-key
+JWT_SECRET=your-super-secure-jwt-secret-key-please-change-this
+NODE_ENV=development
 ```
+
+**Important**: For production deployments, make sure to:
+- Use a strong, unique JWT secret (minimum 32 characters)
+- Use a secure MongoDB connection string with authentication
+- Never commit secrets to the repository
 
 4. Start the development server:
 ```bash
@@ -83,6 +89,11 @@ This project includes a GitHub Actions workflow that:
 2. Creates a Docker image
 3. Pushes the image to GitHub Container Registry
 4. Deploys to Kubernetes (when pushing to the main branch)
+
+The CI/CD pipeline requires the following secrets to be configured in your GitHub repository:
+- `AWS_ACCESS_KEY_ID`: AWS access key for EKS deployment
+- `AWS_SECRET_ACCESS_KEY`: AWS secret key for EKS deployment
+- `AWS_REGION`: AWS region where your EKS cluster is located
 
 ## Architecture Details
 

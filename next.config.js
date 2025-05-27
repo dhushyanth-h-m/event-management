@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'standalone',
   // Enable for WebSocket API routes
   async rewrites() {
     return [

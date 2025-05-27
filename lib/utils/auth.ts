@@ -11,7 +11,21 @@ interface JWTPayload {
   exp: number;
 }
 
-export async function verifyJWT(request: NextRequest) {
+interface AuthSuccess {
+  success: true;
+  user: {
+    id: string;
+    email: string;
+    role: 'user' | 'admin' | 'organizer';
+  };
+}
+
+interface AuthFailure {
+  success: false;
+  message: string;
+}
+
+export async function verifyJWT(request: NextRequest): Promise<AuthSuccess | AuthFailure> {
   try {
     // Get token from Authorization header
     const authHeader = request.headers.get('Authorization');
@@ -26,6 +40,15 @@ export async function verifyJWT(request: NextRequest) {
       return { success: false, message: 'Invalid token format' };
     }
     
+    return verifyJWTToken(token);
+  } catch (error) {
+    console.error('Token verification error:', error);
+    return { success: false, message: 'Invalid token' };
+  }
+}
+
+export function verifyJWTToken(token: string): AuthSuccess | AuthFailure {
+  try {
     // Verify token
     const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload;
     

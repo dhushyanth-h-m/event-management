@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
   try {
     // Verify user is authenticated
     const authResult = await verifyJWT(request);
-    if (!authResult.success) {
+    if (!authResult.success || !authResult.user) {
       return NextResponse.json(
         { success: false, message: 'Unauthorized' },
         { status: 401 }

@@ -3,7 +3,10 @@ import { Server as SocketIOServer } from 'socket.io';
 import { Server as NetServer } from 'http';
 import connectDB from '@/lib/db';
 import { Event } from '@/lib/models/Event';
-import { verifyJWT } from '@/lib/utils/auth';
+import { verifyJWTToken } from '@/lib/utils/auth';
+
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
 
 // Store active WebSocket connections
 let io: SocketIOServer | null = null;
@@ -18,6 +21,12 @@ async function initWebSocketServer(req: NextRequest, res: any) {
 
   // Connect to MongoDB
   await connectDB();
+
+  // Check if we have a server socket (only available in actual server environment)
+  if (!res?.socket?.server) {
+    console.log('WebSocket server not available in this environment');
+    return null;
+  }
 
   // Create new Socket.IO server
   const httpServer = res.socket.server as NetServer;
@@ -37,14 +46,7 @@ async function initWebSocketServer(req: NextRequest, res: any) {
     // Handle authentication
     socket.on('authenticate', async (token) => {
       try {
-        // Create a fake request to use the verifyJWT function
-        const mockRequest = {
-          headers: {
-            get: () => `Bearer ${token}`,
-          },
-        } as NextRequest;
-
-        const authResult = await verifyJWT(mockRequest);
+        const authResult = verifyJWTToken(token);
         
         if (authResult.success) {
           // Associate user with socket
@@ -118,10 +120,15 @@ async function initWebSocketServer(req: NextRequest, res: any) {
 }
 
 export async function GET(req: NextRequest, res: any) {
-  // This route doesn't return a response directly
-  // It's used for WebSocket upgrade
-  await initWebSocketServer(req, res);
-  
-  // Return empty response to keep the connection open
-  return new Response(null, { status: 200 });
+  try {
+    // This route doesn't return a response directly
+    // It's used for WebSocket upgrade
+    await initWebSocketServer(req, res);
+    
+    // Return empty response to keep the connection open
+    return new Response(null, { status: 200 });
+  } catch (error) {
+    console.error('WebSocket initialization error:', error);
+    return new Response('WebSocket initialization failed', { status: 500 });
+  }
 } 
