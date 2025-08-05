@@ -2,13 +2,7 @@
 
 A real-time event management platform built with Next.js, React, MongoDB, WebSockets, and more.
 
-## 🚀 Live Demo 
-
-**Production URL **: https://event-management-chi-blush.vercel.app/
-
-## ✨ Features
-
-
+## Features
 
 - **Real-time Updates**: WebSocket integration for live event updates
 - **MongoDB Integration**: Persistent data storage with MongoDB Atlas
@@ -18,7 +12,7 @@ A real-time event management platform built with Next.js, React, MongoDB, WebSoc
 - **Responsive Design**: Modern, mobile-friendly interface
 - **CI/CD Pipeline**: Automated testing and deployment
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend**: Next.js 14, React, TypeScript, TailwindCSS
 - **Backend**: Next.js API Routes, Node.js
@@ -28,7 +22,7 @@ A real-time event management platform built with Next.js, React, MongoDB, WebSoc
 - **Deployment**: Vercel
 - **CI/CD**: GitHub Actions, ESLint
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -48,7 +42,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-## 🔧 Environment Variables
+## Environment Variables
 
 Create a `.env.local` file with:
 
@@ -58,7 +52,7 @@ JWT_SECRET=your_jwt_secret_key
 NODE_ENV=development
 ```
 
-## 🚀 Deployment
+## Deployment
 
 This project uses automated deployment via GitHub Actions to Vercel:
 
@@ -66,14 +60,14 @@ This project uses automated deployment via GitHub Actions to Vercel:
 - **Build verification** with ESLint and TypeScript checks
 - **Production optimized** builds
 
-## 📚 Learning Resources
+## Learning Resources
 
 Check out the documentation files for setup guides:
 - `MONGODB_SETUP.md` - MongoDB Atlas configuration
 - `DEPLOYMENT.md` - Deployment options and guides
 - `ENVIRONMENT_SETUP.md` - Environment variables setup
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
